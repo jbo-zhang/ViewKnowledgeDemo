@@ -39,6 +39,8 @@ public class TouchEventViewGroup extends ViewGroup{
         return super.dispatchTouchEvent(ev);
     }
 
+    private int mLastXIntercept, mLastYIntercept;
+
     /**
      * 拦截
      * @param ev
@@ -46,7 +48,42 @@ public class TouchEventViewGroup extends ViewGroup{
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
+        //外部拦截法
+        boolean intercepted = false;
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                intercepted = false;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if(intercept(ev)) {
+                    intercepted = true;
+                } else {
+                    intercepted = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                intercepted = false;
+                break;
+            default:
+                break;
+        }
+
+        mLastXIntercept = x;
+        mLastYIntercept = y;
+
+        return intercepted;
+    }
+
+    /**
+     * 在这个方法里书写外部拦截的拦截规则，需要拦截返回true，不需要拦截返回false
+      * @param ev
+     * @return
+     */
+    private boolean intercept(MotionEvent ev) {
+
+        return false;
     }
 
     /**

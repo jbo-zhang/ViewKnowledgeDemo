@@ -23,6 +23,7 @@ public class TouchEventView extends View {
         super(context, attrs, defStyleAttr);
     }
 
+    private int mLastX, mLastY;
     /**
      * 分发
      * @param event
@@ -30,7 +31,39 @@ public class TouchEventView extends View {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+        //内部拦截法, 父类要配合在onInterceptTouchEvent中的DOWN事件返回false
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int deltaX = x - mLastX;
+                int deltaY = y - mLastY;
+                if(parentShouldIntercept(event)) {
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+
+                break;
+            default:
+                break;
+        }
+        mLastX = x;
+        mLastY = y;
+
         return super.dispatchTouchEvent(event);
+    }
+
+    /**
+     * 在这里书写需要父类拦截的规则，需要父类处理返回true, 不需要返回false
+     * @param event
+     * @return
+     */
+    private boolean parentShouldIntercept(MotionEvent event) {
+        return false;
     }
 
 
