@@ -4,9 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.viewknowledgedemo.R;
+
+import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -31,6 +35,17 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(Main2Activity.this, "click MeasureView!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        setContentView(R.layout.horizontol_layout);
+
+        ListView lv = (ListView) findViewById(R.id.list_view);
+
+
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < 30; i++) {
+            list.add("num#" + i);
+        }
+        lv.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, list));
     }
 
 
