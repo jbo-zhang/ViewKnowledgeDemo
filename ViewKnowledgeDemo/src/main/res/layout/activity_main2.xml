@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.viewknowledgedemo.drawprocess.Main2Activity">
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:textSize="24sp"
+        android:text="zhangjinbo"
+        android:textColor="@android:color/black"
+        android:layout_width="200dp"
+        android:background="@color/colorPrimary"
+        android:layout_height="200dp" />
+
+    <com.example.viewknowledgedemo.drawprocess.MyLayoutView
+        android:id="@+id/my_layout_view"
+        android:background="@color/colorAccent"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
+    <com.example.viewknowledgedemo.drawprocess.CircleView
+        android:background="@android:color/darker_gray"
+        android:padding="20dp"
+        android:minWidth="100dp"
+        app:circle_color="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

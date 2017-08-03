@@ -151,7 +151,7 @@ public class TapAndScrollView extends View {
             scrollTo(-mScroller.getCurrX(), -mScroller.getCurrY());
 
             //要想让自己移动，需要自己的父类scrollTo()
-            //((View)getParent()).scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            //((MesureView)getParent()).scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
 
             //为了持续触发computeScroll()
             invalidate();
@@ -173,6 +173,11 @@ public class TapAndScrollView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawCircle(100,100,50,mPaint);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
     }
 
     private void cumputeVelocity(MotionEvent event) {
